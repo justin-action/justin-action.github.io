@@ -456,9 +456,31 @@
       letter-spacing: 0.05em;
       margin-bottom: 2.5rem;
       transition: color 0.2s;
+      position: relative;
     }
 
     .contact-email:hover { color: var(--accent); }
+
+    .email-copied {
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .email-copied.show { opacity: 1; }
 
     /* Links row — spaced out, easy to tap */
     .contact-links {
@@ -588,7 +610,7 @@
       <h1 class="hero-name">JUSTIN<br>EITOKU<br>WONG</h1>
       <!-- EASY EDIT: Update tagline -->
       <p class="hero-tagline">
-        Non-union actor and stunt performer based in California.
+        Actor and stunt performer based in California.
         20+ short and feature films including <em>Row Don't Drift</em>
         and <em>Hard Redemption</em> starring Lou Ferrigno.
         Writer, producer, and lead of <em>Grant Street Dragons</em>.
@@ -718,8 +740,9 @@
   <section id="contact">
     <div class="contact-inner">
       <p class="contact-label">Get In Touch</p>
-      <a href="mailto:justinw.action@gmail.com" class="contact-email">
+      <a href="mailto:justinw.action@gmail.com" class="contact-email" id="email-link" onclick="copyEmail(event)">
         justinw.action@gmail.com
+        <span class="email-copied" id="email-copied">Copied!</span>
       </a>
       <div class="contact-links">
         <a href="https://www.instagram.com/justinwong/" target="_blank" rel="noopener" class="contact-link">Instagram</a>
@@ -772,6 +795,17 @@
     function closeLb() {
       lb.classList.remove('open');
       document.body.style.overflow = '';
+    }
+
+    function copyEmail(e) {
+      const email = 'justinw.action@gmail.com';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).catch(() => {});
+      }
+      const badge = document.getElementById('email-copied');
+      badge.classList.add('show');
+      setTimeout(() => badge.classList.remove('show'), 1800);
+      // Let the mailto link also fire naturally for devices with a mail app
     }
   </script>
 

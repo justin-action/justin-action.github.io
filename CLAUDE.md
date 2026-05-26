@@ -2,7 +2,7 @@
 
 ## Project overview
 A two-page static portfolio site. Plain HTML/CSS/JS, no build tools, no frameworks.
-Preview server: `npx serve -l 3456 website` (configured in `.claude/launch.json`)
+Preview server: `npx live-server --port=3456 --no-browser .` (configured in `.claude/launch.json`)
 Preview URL: http://localhost:3456
 
 ## Pages

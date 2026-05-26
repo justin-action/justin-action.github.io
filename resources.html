@@ -275,19 +275,18 @@
 
     .resource-card:hover { transform: translateY(-3px); }
 
-    /* Tier-specific card styles — EASY EDIT: adjust colors */
-    .card-free  { background: rgba(34, 197, 94, 0.08);  border: 1px solid rgba(34, 197, 94, 0.2);  }
-    .card-dm    { background: rgba(249, 115, 22, 0.08);  border: 1px solid rgba(249, 115, 22, 0.2);  }
+    /* Resource card — neutral style */
+    .resource-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
 
     .resource-title {
       font-size: 0.95rem;
       font-weight: 600;
       line-height: 1.35;
+      color: var(--text);
     }
-
-    /* Title color by tier */
-    .card-free  .resource-title { color: var(--free);  }
-    .card-dm    .resource-title { color: var(--dm);    }
 
     .resource-desc {
       font-size: 0.8rem;
@@ -296,27 +295,26 @@
       flex: 1;
     }
 
-    /* CTA button inside resource card */
+    /* CTA button */
     .resource-btn {
       display: inline-flex;
       align-items: center;
       padding: 0.45rem 0.85rem;
       font-size: 0.68rem;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       border-radius: 4px;
       width: fit-content;
-      transition: opacity 0.2s;
+      transition: background 0.2s;
       cursor: pointer;
-      border: none;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: transparent;
+      color: var(--text);
       font-family: var(--font-body);
     }
 
-    .resource-btn:hover { opacity: 0.8; }
-
-    .btn-free  { background: var(--free);  color: #000; }
-    .btn-dm    { background: var(--dm);    color: #fff; }
+    .resource-btn:hover { background: rgba(255,255,255,0.07); }
 
     /* ============================================================
        INSTAGRAM SECTION
@@ -453,8 +451,7 @@
       <h1 class="hero-heading">Answer<br>the Call.</h1>
       <!-- EASY EDIT: Change subtitle -->
       <p class="hero-sub">
-        Real skills from Avatar, Star Wars, John Wick, and more,
-        so you're ready when your moment comes.
+        Learn real skills from Star Wars, Avatar, Marvel, John Wick, and more.
       </p>
     </div>
   </section>
@@ -536,44 +533,37 @@
     <div class="section-inner">
       <p class="section-label">Resources</p>
 
-      <!-- Access tier legend -->
-      <div class="resources-legend">
-        <span class="legend-item"><span class="dot dot-free"></span> Free</span>
-        <span class="legend-item"><span class="dot dot-dm"></span> Follow + DM on Instagram</span>
-      </div>
-
-      <!-- EASY EDIT: DM cards — the codeword in the button is what followers DM you.
-           You reply with the password/link. To add more: copy any resource-card block. -->
+      <!-- EASY EDIT: To add a card, copy any resource-card block. -->
       <div class="resources-grid">
 
-        <div class="resource-card card-free">
+        <div class="resource-card">
           <div class="resource-title">Stunt breakdown templates</div>
           <div class="resource-desc">Editable sheets to break down any sequence.</div>
-          <a href="#" class="resource-btn btn-free">Free Access</a>
+          <a href="#" class="resource-btn">Free Access</a>
         </div>
 
-        <div class="resource-card card-free">
+        <div class="resource-card">
           <div class="resource-title">Filmmaking and action kit</div>
           <div class="resource-desc">My personal gear and tool list for filming action content.</div>
-          <a href="https://docs.google.com/document/d/1H8myfVEZTmibLj77ITcVKrP7EbTSzqM369Yy4mDvJOM/edit?usp=sharing" target="_blank" rel="noopener" class="resource-btn btn-free">Free Access</a>
+          <a href="https://docs.google.com/document/d/1H8myfVEZTmibLj77ITcVKrP7EbTSzqM369Yy4mDvJOM/edit?usp=sharing" target="_blank" rel="noopener" class="resource-btn">Free Access</a>
         </div>
 
-        <div class="resource-card card-dm">
+        <div class="resource-card">
           <div class="resource-title">Action effects pack</div>
-          <div class="resource-desc">Assets and overlays for your edits. Follow and DM the codeword to unlock.</div>
-          <a href="https://ig.me/m/justinwong" target="_blank" rel="noopener" class="resource-btn btn-dm">DM "EFFECTS"</a>
+          <div class="resource-desc">Assets and overlays for your edits.</div>
+          <a href="https://ig.me/m/justinwong" target="_blank" rel="noopener" class="resource-btn">Free Access</a>
         </div>
 
-        <div class="resource-card card-dm">
+        <div class="resource-card">
           <div class="resource-title">Training arc starter kit</div>
-          <div class="resource-desc">Beginner drills and reference clips. Follow and DM the codeword to unlock.</div>
-          <a href="https://ig.me/m/justinwong" target="_blank" rel="noopener" class="resource-btn btn-dm">DM "TRAINING"</a>
+          <div class="resource-desc">Beginner drills and reference clips.</div>
+          <a href="https://ig.me/m/justinwong" target="_blank" rel="noopener" class="resource-btn">Free Access</a>
         </div>
 
-        <div class="resource-card card-dm">
+        <div class="resource-card">
           <div class="resource-title">John Wick breakdown</div>
-          <div class="resource-desc">Full scene breakdown with notes. Follow and DM the codeword to unlock.</div>
-          <a href="https://ig.me/m/justinwong" target="_blank" rel="noopener" class="resource-btn btn-dm">DM "WICK"</a>
+          <div class="resource-desc">Full scene breakdown with notes.</div>
+          <a href="https://ig.me/m/justinwong" target="_blank" rel="noopener" class="resource-btn">Free Access</a>
         </div>
 
       </div>
@@ -629,7 +619,7 @@
         </a>
 
         <a class="insta-slot" href="https://www.instagram.com/reel/DYazs4_h7-1/" target="_blank" rel="noopener">
-          <img src="images/instagram/Katana sheath.png" alt="How to sheath a katana">
+          <img src="images/instagram/Katana_sheath.png" alt="How to sheath a katana">
           <div class="insta-overlay">
             <div class="insta-play"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
             <p class="insta-title">How to sheath a katana</p>
