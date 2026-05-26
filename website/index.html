@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Justin Eitoku-Wong, Actor and Stunt Performer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       EASY EDIT — Global variables
+       ============================================================ */
+    :root {
+      --bg:          #0d0d0d;
+      --bg-card:     #161616;
+      --bg-alt:      #111111;
+      --text:        #f0ede8;
+      --text-muted:  #6b6b6b;
+      --accent:      #c8102e;
+      --accent-hi:   #e8354a;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --max-w:       1160px;
+      --nav-h:       68px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       NAV
+       ============================================================ */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--nav-h);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links { list-style: none; display: flex; gap: 2rem; align-items: center; }
+
+    .nav-links a {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* Resume pill in nav */
+    .nav-resume {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text) !important;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.35rem 0.8rem;
+      transition: border-color 0.2s !important;
+    }
+
+    .nav-resume:hover { border-color: rgba(255,255,255,0.55) !important; }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hi); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(240,237,232,0.25);
+    }
+    .btn-outline:hover { border-color: rgba(240,237,232,0.6); transform: translateY(-2px); }
+
+    /* ============================================================
+       HERO — Face immediately, split screen
+       ============================================================ */
+    #hero {
+      height: 100svh;
+      min-height: 620px;
+      padding-top: var(--nav-h);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    /* Left — name + CTAs, anchored to bottom */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 3rem 5rem 2.5rem;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 6.5vw, 8rem);
+      line-height: 0.86;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 340px;
+      font-weight: 400;
+      margin-bottom: 2.25rem;
+      line-height: 1.65;
+    }
+
+    .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Right — full-body photo
+       EASY EDIT: Save photo as images/hero.jpg */
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, var(--bg) 0%, transparent 22%),
+        linear-gradient(to top, var(--bg) 0%, transparent 10%);
+      pointer-events: none;
+    }
+
+    .hero-photo-empty {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.1);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       REELS — Content first, no title overhead
+       Two reels side by side, labeled simply
+       ============================================================ */
+    #reels {
+      background: var(--bg-alt);
+      padding: 3.5rem 2.5rem;
+    }
+
+    .reels-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .reels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    /* Simple dot + label above each reel — no big title needed */
+    .reel-label {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+
+    .reel-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .reel-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ============================================================
+       HEADSHOTS — Clean grid, download on hover
+       3 columns = 3×2 symmetric, shows more of each photo
+       ============================================================ */
+    #headshots {
+      background: var(--bg);
+      padding: 4rem 2.5rem;
+    }
+
+    .headshots-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    /* Minimal header: just a label + download-all link */
+    .headshots-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .headshots-bar-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* EASY EDIT: Update href to a ZIP of all headshots */
+    .download-all {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      transition: color 0.2s;
+    }
+    .download-all:hover { color: var(--accent-hi); }
+
+    /* 3-col grid → 3×2 with 6 photos = perfectly symmetric */
+    .headshots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+
+    /* Headshot slot — click opens lightbox */
+    .headshot-slot {
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg-card);
+      display: block;
+      border: 1px solid rgba(255,255,255,0.04);
+      cursor: zoom-in;
+    }
+
+    .headshot-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.4s;
+      pointer-events: none;
+    }
+
+    .headshot-slot:hover img { transform: scale(1.03); }
+
+    /* Download button — only this triggers download */
+    .headshot-dl {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 0.6rem;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #fff;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .headshot-slot:hover .headshot-dl {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      cursor: default;
+      user-select: none;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    #lightbox-close:hover { color: #fff; }
+
+    /* ============================================================
+       BIO — Short paragraph + resume link
+       ============================================================ */
+    #bio {
+      background: var(--bg-alt);
+      padding: 4rem 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .bio-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .bio-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(240,237,232,0.7);
+      margin-bottom: 1.75rem;
+    }
+
+    .bio-text em {
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .resume-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      transition: color 0.2s, gap 0.2s;
+    }
+
+    .resume-link:hover {
+      color: var(--accent-hi);
+      gap: 0.65rem;
+    }
+
+    /* ============================================================
+       CONTACT — Clean, centered, not cluttered
+       ============================================================ */
+    #contact {
+      background: var(--bg);
+      padding: 5rem 2.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .contact-inner { max-width: 520px; margin: 0 auto; }
+
+    .contact-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .contact-email {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.75rem);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+    }
+
+    .contact-email:hover { color: var(--accent); }
+
+    /* Links row — spaced out, easy to tap */
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem 0;
+    }
+
+    .contact-link {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0.55rem 1rem;
+      border: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--text); border-color: rgba(255,255,255,0.1); }
+
+    /* Separator dot between links */
+    .contact-sep {
+      align-self: center;
+      font-size: 0.4rem;
+      color: rgba(255,255,255,0.15);
+      padding: 0 0.1rem;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      padding: 1.25rem 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 960px) {
+      #hero {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100svh;
+      }
+
+      .hero-photo {
+        height: 85vw;
+        min-height: 340px;
+        order: -1;
+      }
+
+      .hero-photo img {
+        object-position: center 20%;
+      }
+
+      .hero-photo::after {
+        background: linear-gradient(to bottom, transparent 55%, var(--bg) 100%);
+      }
+
+      .hero-content { padding: 2rem 1.25rem 3.5rem; justify-content: flex-start; }
+
+      .hero-eyebrow {
+        letter-spacing: 0.14em;
+        font-size: 0.6rem;
+      }
+
+      .bio-inner { max-width: 100%; }
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 1.25rem; }
+      /* Hide all but first two links on mobile */
+      .nav-links li:nth-child(n+3) { display: none; }
+
+      #reels, #headshots, #bio, #contact { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+      .reels-grid     { grid-template-columns: 1fr; gap: 2rem; }
+      .headshots-grid { grid-template-columns: repeat(2, 1fr); }
+
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+       EASY EDIT: All links are already wired up with real URLs.
+       ============================================================ -->
+  <nav>
+    <a href="#hero" class="nav-logo">JUSTIN EITOKU-WONG</a>
+    <ul class="nav-links">
+      <li><a href="#hero" class="active">Acting & Stunt</a></li>
+      <li><a href="resources.html">Action Resources</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <a href="https://docs.google.com/document/d/1zSSFpt59khDpl0Y_AWTvvxLFbmAReRpw/edit"
+           target="_blank" rel="noopener" class="nav-resume">Resume</a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+       EASY EDIT: Save full-body photo as: images/hero.jpg
+       ============================================================ -->
+  <section id="hero">
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Actor · Stunt Performer · Creator</p>
+      <h1 class="hero-name">JUSTIN<br>EITOKU<br>WONG</h1>
+      <!-- EASY EDIT: Update tagline -->
+      <p class="hero-tagline">
+        Non-union actor and stunt performer based in California.
+        20+ short and feature films including <em>Row Don't Drift</em>
+        and <em>Hard Redemption</em> starring Lou Ferrigno.
+        Writer, producer, and lead of <em>Grant Street Dragons</em>.
+      </p>
+      <div class="hero-ctas">
+        <a href="#reels" class="btn btn-primary">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          View Reels
+        </a>
+        <a href="resources.html" class="btn btn-outline">Action Resources</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <img src="images/headshots/Justin_Eitoku-Wong_feature.jpg" alt="Justin Eitoku-Wong">
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       REELS — No title overhead, content first
+       Both reels already embedded. Nothing to edit here.
+       ============================================================ -->
+  <section id="reels">
+    <div class="reels-inner">
+      <div class="reels-grid">
+
+        <div>
+          <p class="reel-label">Acting Reel</p>
+          <div class="reel-embed">
+            <iframe
+              src="https://www.youtube.com/embed/IpBlxTBztwg"
+              title="Justin Eitoku-Wong Acting Reel"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <div>
+          <p class="reel-label">Stunt Reel</p>
+          <div class="reel-embed">
+            <iframe
+              src="https://www.youtube.com/embed/z_TpYWteL7M"
+              title="Justin Eitoku-Wong Stunt Reel"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HEADSHOTS — Click to view larger, hover for download icon
+       EASY EDIT: To swap a photo, change the filename in both
+       the data-src attribute and the <img src> attribute.
+       To add more: copy any <div class="headshot-slot"> block.
+       ============================================================ -->
+  <section id="headshots">
+    <div class="headshots-inner">
+      <div class="headshots-bar">
+        <span class="headshots-bar-label">Headshots</span>
+      </div>
+      <div class="headshots-grid">
+
+        <div class="headshot-slot" data-src="images/headshots/Justin_Eitoku-Wong_feature.jpg">
+          <img src="images/headshots/Justin_Eitoku-Wong_feature.jpg" alt="Justin Eitoku-Wong dramatic">
+          <a class="headshot-dl" href="images/headshots/Justin_Eitoku-Wong_feature.jpg" download title="Download">↓</a>
+        </div>
+
+        <div class="headshot-slot" data-src="images/headshots/Justin_Eitoku-Wong_grey_smile.jpg">
+          <img src="images/headshots/Justin_Eitoku-Wong_grey_smile.jpg" alt="Justin Eitoku-Wong smiling">
+          <a class="headshot-dl" href="images/headshots/Justin_Eitoku-Wong_grey_smile.jpg" download title="Download">↓</a>
+        </div>
+
+        <div class="headshot-slot" data-src="images/headshots/Justin_Eitoku-Wong_chess_neutral.jpeg">
+          <img src="images/headshots/Justin_Eitoku-Wong_chess_neutral.jpeg" alt="Justin Eitoku-Wong chess">
+          <a class="headshot-dl" href="images/headshots/Justin_Eitoku-Wong_chess_neutral.jpeg" download title="Download">↓</a>
+        </div>
+
+        <div class="headshot-slot" data-src="images/headshots/Justin_Eitoku-Wong_blue_smiling.jpg">
+          <img src="images/headshots/Justin_Eitoku-Wong_blue_smiling.jpg" alt="Justin Eitoku-Wong commercial smile">
+          <a class="headshot-dl" href="images/headshots/Justin_Eitoku-Wong_blue_smiling.jpg" download title="Download">↓</a>
+        </div>
+
+        <div class="headshot-slot" data-src="images/headshots/Justin_Eitoku-Wong_Martial_art.jpg">
+          <img src="images/headshots/Justin_Eitoku-Wong_Martial_art.jpg" alt="Justin Eitoku-Wong martial arts">
+          <a class="headshot-dl" href="images/headshots/Justin_Eitoku-Wong_Martial_art.jpg" download title="Download">↓</a>
+        </div>
+
+        <div class="headshot-slot" data-src="images/headshots/Justin_Eitoku-Wong_full.png">
+          <img src="images/headshots/Justin_Eitoku-Wong_full.png" alt="Justin Eitoku-Wong full body">
+          <a class="headshot-dl" href="images/headshots/Justin_Eitoku-Wong_full.png" download title="Download">↓</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       BIO — Short paragraph + resume link
+       EASY EDIT: Update the bio text below.
+       ============================================================ -->
+  <section id="bio">
+    <div class="bio-inner">
+      <a
+        href="https://docs.google.com/document/d/1zSSFpt59khDpl0Y_AWTvvxLFbmAReRpw/edit"
+        target="_blank"
+        rel="noopener"
+        class="resume-link"
+      >View Full Resume →</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT
+       All links already wired up with real URLs.
+       EASY EDIT: Update email if needed.
+       ============================================================ -->
+  <section id="contact">
+    <div class="contact-inner">
+      <p class="contact-label">Get In Touch</p>
+      <a href="mailto:justinw.action@gmail.com" class="contact-email">
+        justinw.action@gmail.com
+      </a>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/justinwong/" target="_blank" rel="noopener" class="contact-link">Instagram</a>
+        <span class="contact-sep">●</span>
+        <a href="https://www.backstage.com/u/justin-eitoku-wong" target="_blank" rel="noopener" class="contact-link">Backstage</a>
+        <span class="contact-sep">●</span>
+        <a href="https://docs.google.com/document/d/1zSSFpt59khDpl0Y_AWTvvxLFbmAReRpw/edit" target="_blank" rel="noopener" class="contact-link">Resume</a>
+        <!-- EASY EDIT: Add IMDb link when available -->
+        <!-- <span class="contact-sep">●</span> -->
+        <!-- <a href="YOUR_IMDB_URL" target="_blank" rel="noopener" class="contact-link">IMDb</a> -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <span class="footer-name">JUSTIN EITOKU-WONG</span>
+    <span class="footer-copy">© 2026</span>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button id="lightbox-close" aria-label="Close">×</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.headshot-slot').forEach(slot => {
+      slot.addEventListener('click', e => {
+        if (e.target.closest('.headshot-dl')) return;
+        lbImg.src = slot.dataset.src;
+        lbImg.alt = slot.querySelector('img').alt;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lb.addEventListener('click', e => {
+      if (!e.target.closest('#lightbox-img')) closeLb();
+    });
+    document.getElementById('lightbox-close').addEventListener('click', closeLb);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+    function closeLb() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  </script>
+
+</body>
+</html>
