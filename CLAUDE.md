@@ -15,7 +15,7 @@ Preview URL: http://localhost:3456
 - Max content width: 1160px
 
 ## index.html sections (in order)
-1. Fixed nav — Acting & Stunt (active) | Action Resources | Contact | Resume pill
+1. Fixed nav — Acting & Stunts (active) | Action Resources | Contact | Resume pill
 2. Hero — split-screen: text left, `Justin_Eitoku-Wong_feature.jpg` right
 3. Reels — Acting reel + Stunt reel side by side (YouTube embeds)
 4. Headshots — 3×2 grid, click to open lightbox, hover for download icon
@@ -24,7 +24,7 @@ Preview URL: http://localhost:3456
 7. Footer
 
 ## resources.html sections (in order)
-1. Fixed nav — Acting & Stunt | Action Resources (active) | Contact | Resume pill
+1. Fixed nav — Acting & Stunts | Action Resources (active) | Contact | Resume pill
 2. Hero — "Answer the Call." heading + subtitle
 3. Guides — doc-icon cards (first one links to Google Doc)
 4. Resources — 2×2 grid, Free (green) + DM on Instagram (orange) tiers

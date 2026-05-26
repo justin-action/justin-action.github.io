@@ -387,49 +387,6 @@
     #lightbox-close:hover { color: #fff; }
 
     /* ============================================================
-       BIO — Short paragraph + resume link
-       ============================================================ */
-    #bio {
-      background: var(--bg-alt);
-      padding: 4rem 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .bio-inner {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .bio-text {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: rgba(240,237,232,0.7);
-      margin-bottom: 1.75rem;
-    }
-
-    .bio-text em {
-      font-style: italic;
-      color: var(--text);
-    }
-
-    .resume-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      transition: color 0.2s, gap 0.2s;
-    }
-
-    .resume-link:hover {
-      color: var(--accent-hi);
-      gap: 0.65rem;
-    }
-
-    /* ============================================================
        CONTACT — Clean, centered, not cluttered
        ============================================================ */
     #contact {
@@ -534,7 +491,7 @@
     /* ============================================================
        RESPONSIVE
        ============================================================ */
-    @media (max-width: 960px) {
+    @media (max-width: 768px) {
       #hero {
         grid-template-columns: 1fr;
         height: auto;
@@ -562,15 +519,23 @@
         font-size: 0.6rem;
       }
 
-      .bio-inner { max-width: 100%; }
+
     }
 
     @media (max-width: 700px) {
       nav { padding: 0 1.25rem; }
-      /* Hide all but first two links on mobile */
+
+      /* Shrink logo so it fits on one line */
+      .nav-logo { font-size: 0.8rem; letter-spacing: 0.02em; white-space: nowrap; }
+
+      /* Tighten nav links gap and size */
+      .nav-links { gap: 0.85rem; }
+      .nav-links a { font-size: 0.55rem; letter-spacing: 0.08em; white-space: nowrap; }
+
+      /* Hide Contact + Resume pill — only keep the two page links */
       .nav-links li:nth-child(n+3) { display: none; }
 
-      #reels, #headshots, #bio, #contact { padding-left: 1.25rem; padding-right: 1.25rem; }
+      #reels, #headshots, #contact { padding-left: 1.25rem; padding-right: 1.25rem; }
 
       .reels-grid     { grid-template-columns: 1fr; gap: 2rem; }
       .headshots-grid { grid-template-columns: repeat(2, 1fr); }
@@ -588,7 +553,7 @@
   <nav>
     <a href="#hero" class="nav-logo">JUSTIN EITOKU-WONG</a>
     <ul class="nav-links">
-      <li><a href="#hero" class="active">Acting & Stunt</a></li>
+      <li><a href="#hero" class="active">Acting & Stunts</a></li>
       <li><a href="resources.html">Action Resources</a></li>
       <li><a href="#contact">Contact</a></li>
       <li>
@@ -712,22 +677,6 @@
         </div>
 
       </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       BIO — Short paragraph + resume link
-       EASY EDIT: Update the bio text below.
-       ============================================================ -->
-  <section id="bio">
-    <div class="bio-inner">
-      <a
-        href="https://docs.google.com/document/d/1zSSFpt59khDpl0Y_AWTvvxLFbmAReRpw/edit"
-        target="_blank"
-        rel="noopener"
-        class="resume-link"
-      >View Full Resume →</a>
     </div>
   </section>
 
