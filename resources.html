@@ -18,7 +18,7 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://justin-action.github.io/resources.html">
-  <meta property="og:title"       content="Free Action & Stunt Resources — Justin Eitoku-Wong">
+  <meta property="og:title"       content="Free Action & Stunt Resources | Justin Eitoku-Wong">
   <meta property="og:description" content="Free guides and asset packs on action choreography, fight scenes, stunt performance, and filmmaking from Bay Area actor Justin Eitoku-Wong.">
   <meta property="og:image"       content="https://justin-action.github.io/images/headshots/Justin_Eitoku-Wong_feature.jpg">
 
@@ -141,8 +141,8 @@
        HERO
        ============================================================ */
     #hero {
-      padding-top: calc(var(--nav-h) + 5rem);
-      padding-bottom: 5rem;
+      padding-top: calc(var(--nav-h) + 3rem);
+      padding-bottom: 3rem;
       padding-left: 2.5rem;
       padding-right: 2.5rem;
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -161,11 +161,11 @@
 
     /* EASY EDIT: Change heading size/weight here */
     .hero-heading {
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       font-weight: 700;
       line-height: 1.05;
       letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       max-width: 700px;
     }
 
@@ -175,7 +175,22 @@
       max-width: 540px;
       font-weight: 300;
       line-height: 1.7;
+      margin-bottom: 1.75rem;
     }
+
+    .hero-scroll-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .hero-scroll-hint:hover { color: var(--text); }
 
     /* ============================================================
        SHARED SECTION STYLES
@@ -232,6 +247,51 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
+
+    .resources-dm-cta {
+      margin-top: 1.5rem;
+      padding: 1.1rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.02);
+    }
+    .resources-dm-cta .dm-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .resources-dm-cta .dm-icon svg { width: 15px; height: 15px; stroke-width: 1.7; }
+    .resources-dm-cta .dm-text {
+      flex: 1;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .dm-codeword {
+      color: var(--accent);
+      font-weight: 600;
+      font-style: italic;
+    }
+    .resources-dm-cta .dm-link {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .resources-dm-cta .dm-link:hover { color: var(--text); }
 
     /* Base resource card — entire card is the link */
     a.resource-card {
@@ -298,7 +358,15 @@
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.35);
+    }
+    .resource-category.cat-asset { color: var(--accent); opacity: 0.8; }
+
+    .resources-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      margin-bottom: 1.5rem;
     }
 
     .resource-title {
@@ -446,11 +514,12 @@
        ============================================================ -->
   <section id="hero">
     <div class="hero-inner">
+      <p class="hero-eyebrow">Action &amp; Film Resources</p>
       <!-- EASY EDIT: Change heading -->
       <h1 class="hero-heading">Answer<br>the Call.</h1>
       <!-- EASY EDIT: Change subtitle -->
       <p class="hero-sub">
-        Learn real skills from Star Wars, Avatar, Marvel, John Wick, and more.
+        Real skills from Star Wars, Avatar, Marvel, John Wick, and more. Plus free guides and tools for your own productions.
       </p>
     </div>
   </section>
@@ -520,9 +589,10 @@
        RESOURCES SECTION
        EASY EDIT: Update titles, descriptions, and links per card.
        ============================================================ -->
-  <section class="section">
+  <section class="section" id="resources">
     <div class="section-inner">
-      <p class="section-label">Resources</p>
+      <p class="section-label">Free Resources</p>
+      <p class="resources-intro">For filmmakers and creators building ambitious stories with heart.</p>
 
       <div class="resources-grid">
 
@@ -530,7 +600,7 @@
           <span class="resource-arrow"><i data-lucide="arrow-up-right"></i></span>
           <div class="resource-icon"><i data-lucide="folder-open"></i></div>
           <div class="resource-body">
-            <div class="resource-category">Asset Pack</div>
+            <div class="resource-category cat-asset">Asset Pack</div>
             <div class="resource-title">Action sound effects pack</div>
             <div class="resource-desc">Impact sounds, whooshes, and hits for your action edits.</div>
           </div>
@@ -587,6 +657,13 @@
         </a>
 
       </div>
+
+      <div class="resources-dm-cta">
+        <div class="dm-icon"><i data-lucide="message-circle"></i></div>
+        <p class="dm-text">Want more? Message me <span class="dm-codeword">RESOURCES</span> on Instagram for exclusive free resource packs.</p>
+        <a class="dm-link" href="https://ig.me/m/justinwong" target="_blank" rel="noopener">Message ↗</a>
+      </div>
+
     </div>
   </section>
 
