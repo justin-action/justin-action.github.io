@@ -1,13 +1,14 @@
 # Justin Eitoku-Wong — Personal Website
 
 ## Project overview
-A two-page static portfolio site. Plain HTML/CSS/JS, no build tools, no frameworks.
+A three-page static portfolio site. Plain HTML/CSS/JS, no build tools, no frameworks.
 Preview server: `npx live-server --port=3456 --no-browser .` (configured in `.claude/launch.json`)
 Preview URL: http://localhost:3456
 
 ## Pages
 - `index.html` — Casting director facing: hero, reels, headshots, bio, contact
 - `resources.html` — Instagram audience facing: guides, resources, Instagram posts
+- `film-locations.html` — Movie/TV scene recreations: interactive Leaflet map + cards, data-driven from `data/recreations.json`
 
 ## Design system
 - Dark cinematic aesthetic: `--bg: #0d0d0d`, `--accent: #c8102e` (red)
@@ -31,9 +32,25 @@ Preview URL: http://localhost:3456
 5. Instagram — 5 portrait cards with cover images + titles + play icons
 6. Footer
 
+## film-locations.html sections (in order)
+1. Fixed nav — Acting & Stunts | Action Resources | Film Locations (active) | Contact | Resume pill
+2. Hero — "Spot It. Recreate It." heading + personal-voice subtitle
+3. Movie Recreations — location tabs (All + one per city, dynamic from data) filtering a Leaflet dark-tile map + cards grid below (film, scene, city, years, notes, status chip, featured badge, YouTube link)
+4. Footer
+
+## Movie Recreations data pipeline
+- Source of truth is a Notion database (id `327e38c7-0265-80f1-b92a-000bd4ab8cb3`). Fields: Name, Film / Show, City, Scene / Moment, Release year, Recreated year, Notes, Status, Source (YouTube URL), Featured (checkbox), location (Place, lat/lon), Original/Recreation/Side by side (files), slug (optional).
+- `scripts/fetch-recreations.js` — run with `node scripts/fetch-recreations.js` whenever Notion changes (token is read from `scripts/.env.local`, gitignored). Writes `data/recreations.json` and downloads the Original/Recreation photos into `images/recreations/<slug>/`. No auto-sync/GitHub Action — deliberately kept manual for now.
+- Slugs: uses the Notion `slug` field if you set one, otherwise auto-generates one from the Name (deduped against collisions) so you don't have to fill it in per row. Only set it manually to override the auto-generated one.
+- Featured: check the `Featured` box in Notion on any row to have it sort to the top of the grid (script sorts featured-first on every sync; card shows a "Featured" badge).
+- Image files keep whatever extension was actually uploaded to Notion (jpg/png/webp/etc — not forced to `.jpg`); the real extension is recorded in `originalImage`/`recreationImage` in the JSON. Re-running the script skips files that already exist locally — delete a local file first if you swapped the photo in Notion and want the new one pulled down.
+- Photo cells use `object-fit: contain` (not `cover`) so a photo is never cropped, even if it doesn't match the card's aspect ratio — this was a deliberate choice since Justin needs to stay fully in frame.
+- `data/recreations.json` — static data file `film-locations.html` fetches client-side. Committed to the repo (this is what the live site actually reads).
+
 ## Images
 - `images/headshots/` — 9 headshot photos
 - `images/instagram/` — 5 Instagram reel cover thumbnails (PNG)
+- `images/recreations/<slug>/` — original.<ext> + recreation.<ext> per movie recreation, downloaded automatically by the fetch script from Notion's file uploads
 
 ## Headshot order (index.html)
 1. Justin_Eitoku-Wong_feature.jpg (hero + slot 1)
